@@ -1,0 +1,24 @@
+Training Time: 87.6 min
+Accuracy: 90.19%
+
+                                             precision    recall  f1-score   support
+
+              Pepper__bell___Bacterial_spot       0.91      0.98      0.94       199
+                     Pepper__bell___healthy       0.97      0.98      0.97       295
+                      Potato___Early_blight       0.99      0.91      0.95       200
+                       Potato___Late_blight       0.94      0.86      0.90       200
+                           Potato___healthy       0.84      0.87      0.85        30
+                      Tomato_Bacterial_spot       0.89      0.95      0.92       425
+                        Tomato_Early_blight       0.89      0.61      0.72       200
+                         Tomato_Late_blight       0.91      0.91      0.91       381
+                           Tomato_Leaf_Mold       0.87      0.90      0.89       190
+                  Tomato_Septoria_leaf_spot       0.87      0.86      0.87       354
+Tomato_Spider_mites_Two_spotted_spider_mite       0.87      0.83      0.85       335
+                        Tomato__Target_Spot       0.68      0.89      0.77       280
+      Tomato__Tomato_YellowLeaf__Curl_Virus       0.99      0.96      0.97       641
+                Tomato__Tomato_mosaic_virus       0.97      0.91      0.94        74
+                             Tomato_healthy       0.96      0.91      0.94       292
+
+                                   accuracy                           0.90      4096
+                                  macro avg       0.90      0.89      0.89      4096
+                               weighted avg       0.91      0.90      0.90      4096

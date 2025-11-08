@@ -1,0 +1,173 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual Environment (DON'T UPLOAD - too large)
+venv/
+ENV/
+env/
+.venv/
+
+# Flask
+instance/
+.webassets-cache
+*.pyc
+
+# Uploads folder (temporary files only)
+uploads/*
+!uploads/.gitkeep
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+*.bak
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Large Training Data (DON'T UPLOAD - too large for GitHub)
+data/PlantVillage_Dataset/
+data/*.zip
+data/*.tar.gz
+data/raw/
+data/processed/
+
+# Keep data folder structure but not the large dataset
+!data/README.md
+!data/.gitkeep
+
+# Model files
+# IMPORTANT: If your model file is > 100MB, it won't upload to GitHub
+# Option 1: Keep this line to exclude models (upload to Google Drive instead)
+models/*.h5
+models/*.keras
+models/*.hdf5
+
+# Option 2: If model is < 100MB, comment out the lines above and uncomment below:
+# !models/plant_disease_model_compatible.h5
+# !models/class_labels.json
+
+# Keep model folder structure
+!models/README.md
+!models/.gitkeep
+
+# Notebooks - Keep checkpoints out
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Training outputs (images, plots)
+# Keep screenshots but not training results
+results/
+outputs/
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Allow specific folders for screenshots/documentation
+!screenshots/*.png
+!screenshots/*.jpg
+!docs/images/*.png
+!static/images/*
+
+# Jupyter Notebook temporary files
+.ipynb_checkpoints
+**/.ipynb_checkpoints/
+
+# Node modules (if any)
+node_modules/
+package-lock.json
+
+# Compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# Translations
+*.mo
+*.pot
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
