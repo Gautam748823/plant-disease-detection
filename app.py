@@ -25,45 +25,57 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 # Allowed file extensions
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-# Load model and class labels
-# Use absolute path to avoid file not found errors
-MODEL_PATH = 'C:/Users/gauta/plant-disease-detection/models/plant_disease_model_compatible.h5'
-LABELS_PATH = 'C:/Users/gauta/plant-disease-detection/models/class_labels.json'
+# --- start replacement block ---
+from pathlib import Path
+import subprocess
 
+# Paths (relative)
+BASE_DIR = Path(__file__).resolve().parent
+MODELS_DIR = BASE_DIR / "models"
+MODEL_FILENAME = 'C:/Users/gauta/plant-disease-detection/models/plant_disease_model_compatible.h5'
+MODEL_PATH = MODELS_DIR / MODEL_FILENAME
+LABELS_PATH = MODELS_DIR / 'C:/Users/gauta/plant-disease-detection/models/class_labels.json'
+
+# Helper to download model at boot if not present
+MODEL_URL = os.getenv("MODEL_URL")  # must be set on Render (or locally for testing)
+
+def ensure_model_exists():
+    MODELS_DIR.mkdir(parents=True, exist_ok=True)
+    if not MODEL_PATH.exists():
+        if not MODEL_URL:
+            print("⚠️ MODEL_URL not set and model file not found locally.")
+            return
+        print(f"📦 Downloading model from MODEL_URL to {MODEL_PATH} ...")
+        subprocess.check_call(["bash", "-lc", f"curl -L '{MODEL_URL}' -o '{MODEL_PATH}'"])
+        print("✅ Model downloaded.")
+
+# Ensure model available before loading
+ensure_model_exists()
+
+# Now try to load the model (same robust approach as before)
 print("Loading model...")
 try:
-    # Try loading with compile=False to avoid compatibility issues
-    model = load_model(MODEL_PATH, compile=False)
-    
-    # Recompile with current TensorFlow version
-    model.compile(
-        optimizer='adam',
-        loss='categorical_crossentropy',
-        metrics=['accuracy']
-    )
+    model = load_model(str(MODEL_PATH), compile=False)
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     print("✅ Model loaded successfully!")
 except Exception as e:
     print(f"❌ Error loading model: {e}")
-    print("\nTrying alternative loading method...")
     try:
         import tensorflow as tf
-        model = tf.keras.models.load_model(MODEL_PATH, compile=False)
-        model.compile(
-            optimizer='adam',
-            loss='categorical_crossentropy',
-            metrics=['accuracy']
-        )
+        model = tf.keras.models.load_model(str(MODEL_PATH), compile=False)
+        model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
         print("✅ Model loaded with alternative method!")
     except Exception as e2:
         print(f"❌ Alternative method failed: {e2}")
-        print("\n⚠️ IMPORTANT: Your model may have been trained with a different TensorFlow version.")
-        print("Please retrain the model with TensorFlow 2.20 or downgrade to TensorFlow 2.15")
-        exit(1)
+        raise RuntimeError("Model loading failed. Check MODEL_URL, model file, and TF version.") from e2
 
+# Load labels
 print("Loading class labels...")
 with open(LABELS_PATH, 'r') as f:
     class_labels = json.load(f)
 print(f"✅ {len(class_labels)} classes loaded!")
+# --- end replacement block ---
+
 
 # Disease information and treatment recommendations
 # This will match ANY disease name format
