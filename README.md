@@ -28,3 +28,15 @@ Next Steps
 4. Build the Web Interface
 5. Test the Complete Application
 6. Deploy & Document
+
+
+
+![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.16-orange?logo=tensorflow)
+![Flask](https://img.shields.io/badge/Flask-2.3-green?logo=flask)
+![Status](https://img.shields.io/badge/Status-Active-success)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+![Project Banner](banner.png)
+
+# 🌿 Plant Disease Detection System
